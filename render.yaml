@@ -22,8 +22,9 @@ services:
       - key: REFRESH_TOKEN_EXPIRE_DAYS
         value: "7"
 
-  - type: static
+  - type: web
     name: astro4-frontend
+    runtime: static
     repo: https://github.com/vicgor/astro4
     branch: main
     rootDir: frontend
