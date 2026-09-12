@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LoginForm from '../components/auth/LoginForm';
+---
+
+<BaseLayout title="Вход" description="Страница входа">
+  <h1 class="text-3xl font-bold mb-6">Вход в аккаунт</h1>
+  <LoginForm client:load />
+</BaseLayout>

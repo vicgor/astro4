@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Личный кабинет" description="Защищенная страница">
+  <div id="dashboard-content" class="hidden">
+    <h1 class="text-3xl font-bold mb-4">Личный кабинет</h1>
+    <p class="text-gray-700">Вы успешно авторизованы.</p>
+    <button
+      id="logout"
+      class="mt-6 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+    >
+      Выйти
+    </button>
+  </div>
+
+  <div id="unauthorized" class="hidden">
+    <p class="text-red-600">Требуется авторизация. Перенаправление...</p>
+  </div>
+
+  <script>
+    function getCookie(name: string): string | null {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    const token = getCookie('token');
+
+    if (!token) {
+      document.getElementById('unauthorized')?.classList.remove('hidden');
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 1500);
+    } else {
+      document.getElementById('dashboard-content')?.classList.remove('hidden');
+    }
+
+    document.getElementById('logout')?.addEventListener('click', () => {
+      document.cookie = 'token=; Path=/; Max-Age=0';
+      window.location.href = '/login';
+    });
+  </script>
+</BaseLayout>

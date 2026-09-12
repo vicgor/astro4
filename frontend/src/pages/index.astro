@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Главная" description="Сайт на Astro 4 и FastAPI">
+  <h1 class="text-4xl font-bold mb-4">Привет, Astro 4 + FastAPI!</h1>
+  <p class="text-lg text-gray-700 mb-6">
+    Это стартовый шаблон полноценного веб-сайта с фронтендом на Astro 4 и бэкендом на FastAPI.
+  </p>
+  <div class="flex gap-4">
+    <a href="/login" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      Войти
+    </a>
+    <a href="/dashboard" class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50">
+      Личный кабинет
+    </a>
+  </div>
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold mb-4">Что включено</h2>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+      <li>FastAPI с асинхронным SQLAlchemy 2.0</li>
+      <li>JWT-авторизация (регистрация и вход)</li>
+      <li>Astro 4 с гибридным рендерингом</li>
+      <li>React-острова для интерактивных форм</li>
+      <li>Tailwind CSS для стилей</li>
+      <li>Docker и docker-compose для деплоя</li>
+    </ul>
+  </section>
+</BaseLayout>
