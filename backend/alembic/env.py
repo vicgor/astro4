@@ -22,7 +22,9 @@ target_metadata = Base.metadata
 def get_sync_database_url() -> str:
     """Convert async database URL to sync URL for Alembic."""
     url = make_url(settings.DATABASE_URL)
-    sync_driver = url.drivername.replace("+asyncpg", "").replace("+aiosqlite", "")
+    sync_driver = (
+        url.drivername.replace("+asyncpg", "+psycopg2").replace("+aiosqlite", "")
+    )
     return str(url.set(drivername=sync_driver))
 
 
