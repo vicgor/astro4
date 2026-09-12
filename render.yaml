@@ -28,7 +28,7 @@ services:
     branch: main
     rootDir: frontend
     buildCommand: npm install -g pnpm@9.15.0 && pnpm install && pnpm build
-    publishPath: ./dist
+    staticPublishPath: ./dist
     envVars:
       - key: PUBLIC_API_URL
         value: https://astro4-backend.onrender.com
