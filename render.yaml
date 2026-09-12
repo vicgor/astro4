@@ -2,6 +2,7 @@ services:
   - type: web
     name: astro4-backend
     runtime: docker
+    plan: free
     repo: https://github.com/vicgor/astro4
     branch: main
     rootDir: backend
