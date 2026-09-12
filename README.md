@@ -143,6 +143,39 @@ make migrate-down
 - Настроен SSH-доступ по ключу
 - Проект склонирован в `DEPLOY_PATH`
 
+## Деплой на Render
+
+Проект включает `render.yaml` для быстрого деплоя на [Render](https://render.com/).
+
+### Что создаётся
+
+- **astro4-backend** — Web Service с FastAPI (Docker)
+- **astro4-frontend** — Static Site с Astro
+- **astro4-db** — PostgreSQL база данных (free план)
+
+### Как задеплоить
+
+1. Зарегистрируйся на https://render.com
+2. В Dashboard нажми **New + → Blueprint**
+3. Выбери репозиторий `vicgor/astro4`
+4. Render автоматически создаст все сервисы по `render.yaml`
+5. Дождись окончания деплоя (5–10 минут)
+
+### Важно после деплоя
+
+1. Открой сервис **astro4-frontend** и скопируй его URL (например, `https://astro4-frontend.onrender.com`)
+2. Открой сервис **astro4-backend** → **Environment**
+3. Обнови переменную `FRONTEND_URL` на реальный URL frontend
+4. Перезапусти backend
+
+Если URL frontend отличается от `https://astro4-frontend.onrender.com`, также обнови `PUBLIC_API_URL` в настройках frontend на URL backend.
+
+### Ограничения бесплатного плана Render
+
+- Сервис «засыпает» после 15 минут без трафика
+- Первый запрос после сна может занимать 30–60 секунд
+- База данных имеет ограничения по размеру
+
 ## Возможности
 
 - FastAPI с асинхронным SQLAlchemy 2.0

@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: astro4-backend
+    runtime: docker
+    repo: https://github.com/vicgor/astro4
+    branch: main
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: astro4-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://astro4-frontend.onrender.com
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+
+  - type: static
+    name: astro4-frontend
+    runtime: static
+    repo: https://github.com/vicgor/astro4
+    branch: main
+    rootDir: frontend
+    buildCommand: npm install -g pnpm@9.15.0 && pnpm install && pnpm build
+    publishPath: ./dist
+    envVars:
+      - key: PUBLIC_API_URL
+        value: https://astro4-backend.onrender.com
+
+databases:
+  - name: astro4-db
+    databaseName: astro4
+    user: astro4
+    plan: free
